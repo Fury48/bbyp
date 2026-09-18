@@ -19,8 +19,25 @@ const FALLBACK = {
   },
 };
 
-// ponytail: local-only fallback; swap the lookup for a server AI call later without changing callers.
-export function combineStrengths(a, b) {
+// server/index.js also imports this: pure, no browser/network API, safe on both sides.
+export function lookupFallback(a, b) {
   const key = [a, b].sort().join("+");
   return FALLBACK[key] ?? null;
+}
+
+const API_URL = "http://localhost:3001/api/combine";
+
+// ponytail: local stub server for now; point API_URL at the Supabase Edge Function later, callers don't change.
+export async function combineStrengths(a, b) {
+  try {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ a, b }),
+    });
+    if (!res.ok) throw new Error("bad response");
+    return await res.json();
+  } catch {
+    return lookupFallback(a, b);
+  }
 }

@@ -27,14 +27,15 @@ export function initCombinationTable() {
     modal.classList.remove("hidden");
   });
 
-  combineBtn.addEventListener("click", () => {
+  combineBtn.addEventListener("click", async () => {
     const a = selectA.value;
     const b = selectB.value;
     if (!a || !b || a === b) {
       resultEl.textContent = "서로 다른 강점 2개를 선택하세요.";
       return;
     }
-    const result = combineStrengths(a, b);
+    resultEl.textContent = "조합 중...";
+    const result = await combineStrengths(a, b);
     if (!result) {
       resultEl.textContent = "아직 알려진 조합이 없습니다.";
       return;
