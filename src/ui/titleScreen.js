@@ -2,6 +2,7 @@ const API_BASE = "http://localhost:3001";
 
 export function initTitleScreen(onStart) {
   const titleScreen = document.getElementById("title-screen");
+  const authRow = document.querySelector(".auth-row");
   const loginForm = document.getElementById("login-form");
   const signupForm = document.getElementById("signup-form");
   const authMessage = document.getElementById("auth-message");
@@ -11,16 +12,14 @@ export function initTitleScreen(onStart) {
   const logoutBtn = document.getElementById("logout-btn");
 
   function showWelcome(username) {
-    loginForm.classList.add("hidden");
-    signupForm.classList.add("hidden");
+    authRow.classList.add("hidden");
     authMessage.textContent = "";
     welcomeBack.classList.remove("hidden");
     welcomeUsername.textContent = username;
   }
 
   function showAuthForms() {
-    loginForm.classList.remove("hidden");
-    signupForm.classList.remove("hidden");
+    authRow.classList.remove("hidden");
     welcomeBack.classList.add("hidden");
   }
 
