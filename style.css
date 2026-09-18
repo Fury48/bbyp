@@ -1,8 +1,20 @@
+:root {
+  --wood-dark: #6b4423;
+  --wood: #8b5e3c;
+  --wood-light: #d9b384;
+  --parchment: #fbf0d9;
+  --ink: #4a2f1c;
+  --accent-green: #7cb342;
+  --accent-green-dark: #5a8f2e;
+  --accent-gold: #e0a72e;
+  --accent-gold-dark: #b9821f;
+}
+
 html,
 body {
   margin: 0;
   height: 100%;
-  font-family: sans-serif;
+  font-family: "Jua", sans-serif;
   background: #222;
   overflow: hidden;
 }
@@ -18,24 +30,13 @@ body {
   pointer-events: none;
 }
 
-.modal-content ul {
-  margin: 4px 0 0;
-  padding-left: 18px;
-}
-
-.panel-label {
-  margin: 8px 0 0;
-  font-size: 12px;
-  opacity: 0.8;
-}
-
 .modal {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(40, 24, 10, 0.45);
   pointer-events: auto;
 }
 
@@ -44,41 +45,124 @@ body {
 }
 
 .modal-content {
-  background: #fff;
-  padding: 20px 24px;
-  border-radius: 8px;
+  background: var(--parchment);
+  color: var(--ink);
+  border: 6px solid var(--wood);
+  border-radius: 16px;
+  box-shadow:
+    0 6px 0 var(--wood-dark),
+    0 10px 20px rgba(0, 0, 0, 0.35);
+  padding: 20px 26px;
   min-width: 280px;
+}
+
+.modal-content h2 {
+  margin: 0 0 10px;
+  color: var(--wood-dark);
+  text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .modal-content select {
   display: block;
   width: 100%;
   margin: 6px 0;
+  font-family: "Jua", sans-serif;
+  background: var(--wood-light);
+  color: var(--ink);
+  border: 3px solid var(--wood-dark);
+  border-radius: 8px;
+  padding: 6px 8px;
 }
 
-#question-list button {
+/* 버튼 공통 */
+button {
+  font-family: "Jua", sans-serif;
+  background: var(--accent-gold);
+  border: 3px solid var(--accent-gold-dark);
+  border-radius: 10px;
+  color: var(--ink);
+  padding: 7px 16px;
+  cursor: pointer;
+  box-shadow: 0 3px 0 var(--accent-gold-dark);
+  transition: transform 0.05s ease, box-shadow 0.05s ease, filter 0.1s ease;
+}
+
+button:hover {
+  filter: brightness(1.06);
+}
+
+button:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+button:disabled {
+  cursor: default;
+  filter: grayscale(0.5) brightness(0.9);
+  transform: none;
+}
+
+.question-btn {
   display: block;
   width: 100%;
   margin: 6px 0;
   text-align: left;
+  background: var(--accent-green);
+  border-color: var(--accent-green-dark);
+  box-shadow: 0 3px 0 var(--accent-green-dark);
 }
 
-.garden-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 44px);
-  grid-auto-rows: 44px;
-  gap: 4px;
-  margin: 10px 0;
+.question-btn:disabled {
+  background: #cfd8c5;
+  border-color: #9aa892;
+  box-shadow: none;
 }
 
-.garden-cell {
-  border: 1px solid #999;
-  background: #eef7ee;
-  font-size: 10px;
+/* 강점 / 아이템 배지 */
+.panel-label {
+  margin: 10px 0 2px;
+  font-size: 14px;
+  color: var(--wood-dark);
+}
+
+#inventory-list,
+#normal-item-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
   padding: 0;
-  overflow: hidden;
+  margin: 0 0 4px;
+  max-width: 320px;
 }
 
+#inventory-list li {
+  background: var(--accent-green);
+  border: 2px solid var(--accent-green-dark);
+  color: #fff;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+#normal-item-list li {
+  background: var(--accent-gold);
+  border: 2px solid var(--accent-gold-dark);
+  color: var(--ink);
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+
+#combine-result {
+  background: rgba(124, 179, 66, 0.18);
+  border-left: 4px solid var(--accent-green);
+  padding: 6px 10px;
+  border-radius: 6px;
+  min-height: 1.2em;
+}
+
+/* 조합대 (드래그 앤 드롭) */
 .craft-layout {
   display: flex;
   gap: 16px;
@@ -89,30 +173,34 @@ body {
 .craft-source {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   min-width: 90px;
 }
 
 .craft-chip {
-  border: 1px solid #999;
-  background: #eef7ee;
-  padding: 4px 8px;
+  background: var(--accent-green);
+  color: #fff;
+  border: 2px solid var(--accent-green-dark);
+  border-radius: 8px;
+  padding: 6px 10px;
   cursor: grab;
   font-size: 13px;
-  border-radius: 4px;
   text-align: center;
+  box-shadow: 0 2px 0 var(--accent-green-dark);
 }
 
 .craft-grid {
   display: grid;
   grid-template-columns: repeat(3, 48px);
   grid-auto-rows: 48px;
-  gap: 4px;
+  gap: 5px;
 }
 
 .craft-slot {
-  border: 1px solid #999;
-  background: #f4f4f4;
+  background: var(--wood-light);
+  border: 3px solid var(--wood-dark);
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
   font-size: 11px;
   display: flex;
   align-items: center;
@@ -123,6 +211,25 @@ body {
 }
 
 .craft-slot.filled {
-  background: #dff0d8;
+  background: var(--parchment);
   cursor: pointer;
+}
+
+/* 정원 그리드 */
+.garden-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 44px);
+  grid-auto-rows: 44px;
+  gap: 5px;
+  margin: 10px 0;
+}
+
+.garden-cell {
+  background: var(--wood-light);
+  border: 3px solid var(--wood-dark);
+  border-radius: 8px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25);
+  font-size: 10px;
+  padding: 0;
+  overflow: hidden;
 }

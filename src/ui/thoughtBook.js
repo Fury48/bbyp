@@ -10,6 +10,7 @@ export function initThoughtBook() {
     list.innerHTML = "";
     for (const q of QUESTIONS) {
       const btn = document.createElement("button");
+      btn.className = "question-btn";
       const answered = hasStrength(q.strength);
       btn.textContent = answered ? `${q.text} (완료)` : q.text;
       btn.disabled = answered;
