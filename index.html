@@ -13,9 +13,36 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <div id="game-container"></div>
+    <div id="title-screen">
+      <div class="title-card">
+        <h1>BYPP</h1>
+        <p class="tagline">게임을 통해 나를 알아가는 여행</p>
 
-    <div id="ui-root">
+        <form id="login-form" class="auth-form">
+          <input id="login-username" type="text" placeholder="아이디" autocomplete="username" required />
+          <input id="login-password" type="password" placeholder="비밀번호" autocomplete="current-password" required />
+          <button type="submit">로그인</button>
+        </form>
+
+        <form id="signup-form" class="auth-form">
+          <input id="signup-username" type="text" placeholder="아이디" autocomplete="username" required />
+          <input id="signup-password" type="password" placeholder="비밀번호" autocomplete="new-password" required />
+          <button type="submit">회원가입</button>
+        </form>
+
+        <p id="auth-message"></p>
+
+        <div id="welcome-back" class="hidden">
+          <p>환영합니다, <strong id="welcome-username"></strong>님!</p>
+          <button id="start-game-btn">게임 시작</button>
+          <button id="logout-btn">다른 계정으로</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="game-container" class="hidden"></div>
+
+    <div id="ui-root" class="hidden">
       <div id="inventory-panel" class="modal hidden">
         <div class="modal-content">
           <h2>인벤토리</h2>

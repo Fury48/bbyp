@@ -64,15 +64,14 @@ export function initCombinationTable() {
   combineBtn.addEventListener("click", async () => {
     const filled = slots.filter(Boolean);
     const unique = [...new Set(filled)];
-    if (filled.length !== 2 || unique.length !== 2) {
-      resultEl.textContent = "칸에 서로 다른 강점 2개를 놓아주세요.";
+    if (filled.length !== unique.length || unique.length < 2 || unique.length > 3) {
+      resultEl.textContent = "칸에 서로 다른 강점 2~3개를 놓아주세요.";
       return;
     }
-    const [a, b] = unique;
     resultEl.textContent = "조합 중...";
-    const result = await combineStrengths(a, b);
+    const result = await combineStrengths(unique);
     if (!result) {
-      resultEl.textContent = "아직 알려진 조합이 없습니다.";
+      resultEl.textContent = "조합에 실패했습니다. 다시 시도해주세요.";
       return;
     }
     addStrength(result.name);

@@ -40,10 +40,6 @@ body {
   pointer-events: auto;
 }
 
-.hidden {
-  display: none;
-}
-
 .modal-content {
   background: var(--parchment);
   color: var(--ink);
@@ -232,4 +228,103 @@ button:disabled {
   font-size: 10px;
   padding: 0;
   overflow: hidden;
+}
+
+/* 생각의 책 질문 카드 */
+.question-card {
+  border: 2px solid var(--wood-light);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.question-card p {
+  margin: 0 0 6px;
+}
+
+.question-card textarea {
+  display: block;
+  width: 100%;
+  font-family: "Jua", sans-serif;
+  border: 3px solid var(--wood-dark);
+  border-radius: 8px;
+  padding: 6px 8px;
+  resize: vertical;
+  box-sizing: border-box;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+
+.question-done {
+  color: var(--accent-green-dark);
+  font-weight: bold;
+}
+
+/* 타이틀 화면 */
+#title-screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #7cb342 0%, #5a8f2e 55%, #3f6b1f 100%);
+  z-index: 10;
+}
+
+.title-card {
+  background: var(--parchment);
+  border: 6px solid var(--wood);
+  border-radius: 20px;
+  box-shadow:
+    0 8px 0 var(--wood-dark),
+    0 14px 28px rgba(0, 0, 0, 0.4);
+  padding: 36px 44px;
+  text-align: center;
+  min-width: 320px;
+}
+
+.title-card h1 {
+  margin: 0 0 4px;
+  font-size: 48px;
+  color: var(--wood-dark);
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.4);
+}
+
+.tagline {
+  margin: 0 0 20px;
+  color: var(--ink);
+  opacity: 0.8;
+}
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.auth-form input {
+  font-family: "Jua", sans-serif;
+  border: 3px solid var(--wood-dark);
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #fff;
+  color: var(--ink);
+}
+
+#auth-message {
+  min-height: 1.2em;
+  color: var(--wood-dark);
+  font-size: 14px;
+}
+
+#welcome-back p {
+  font-size: 18px;
+  color: var(--ink);
+}
+
+/* 항상 마지막에 둬서, 뒤에 어떤 규칙이 추가되든 display:none이 우선하게 한다 */
+.hidden {
+  display: none !important;
 }

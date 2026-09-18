@@ -1,19 +1,23 @@
 export const GARDEN_GRID_SIZE = 4;
 
-const STORAGE_KEY = "bypp-save";
-
 function emptyState() {
   return {
     inventory: [],
     normalItems: [],
     garden: Array(GARDEN_GRID_SIZE * GARDEN_GRID_SIZE).fill(null),
+    answeredQuestions: [],
   };
 }
 
-function loadState() {
+let storageKey = "bypp-save-guest";
+let state = emptyState();
+
+// Must be called once after login, before any UI reads state - keys the save per account.
+export function initSave(username) {
+  storageKey = `bypp-save-${username}`;
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    return {
+    const saved = JSON.parse(localStorage.getItem(storageKey));
+    state = {
       inventory: Array.isArray(saved.inventory) ? saved.inventory : [],
       normalItems: Array.isArray(saved.normalItems) ? saved.normalItems : [],
       garden:
@@ -21,16 +25,17 @@ function loadState() {
         saved.garden.length === GARDEN_GRID_SIZE * GARDEN_GRID_SIZE
           ? saved.garden
           : emptyState().garden,
+      answeredQuestions: Array.isArray(saved.answeredQuestions)
+        ? saved.answeredQuestions
+        : [],
     };
   } catch {
-    return emptyState();
+    state = emptyState();
   }
 }
 
-const state = loadState();
-
 function save() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  localStorage.setItem(storageKey, JSON.stringify(state));
 }
 
 export function addStrength(name) {
@@ -67,4 +72,15 @@ export function setGardenCell(index, name) {
   state.garden[index] = name || null;
   save();
   window.dispatchEvent(new CustomEvent("garden-changed"));
+}
+
+export function isQuestionAnswered(question) {
+  return state.answeredQuestions.includes(question);
+}
+
+export function markQuestionAnswered(question) {
+  if (!isQuestionAnswered(question)) {
+    state.answeredQuestions.push(question);
+    save();
+  }
 }
