@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BYPP</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div id="game-container"></div>
+
+    <div id="ui-root">
+      <div id="inventory-panel" class="panel hidden">
+        <h3>인벤토리 (I)</h3>
+        <p class="panel-label">강점</p>
+        <ul id="inventory-list"></ul>
+        <p class="panel-label">아이템</p>
+        <ul id="normal-item-list"></ul>
+      </div>
+
+      <div id="thought-book" class="modal hidden">
+        <div class="modal-content">
+          <h2>생각의 책</h2>
+          <div id="question-list"></div>
+          <button id="close-book">닫기</button>
+        </div>
+      </div>
+
+      <div id="combination-table" class="modal hidden">
+        <div class="modal-content">
+          <h2>조합대</h2>
+          <select id="strength-a"></select>
+          <select id="strength-b"></select>
+          <button id="combine-btn">조합하기</button>
+          <p id="combine-result"></p>
+          <button id="close-table">닫기</button>
+        </div>
+      </div>
+
+      <div id="garden" class="modal hidden">
+        <div class="modal-content">
+          <h2>정원 꾸미기</h2>
+          <select id="garden-item-select"></select>
+          <div id="garden-grid" class="garden-grid"></div>
+          <button id="close-garden">닫기</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
