@@ -18,19 +18,7 @@ body {
   pointer-events: none;
 }
 
-.panel {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background: rgba(0, 0, 0, 0.7);
-  color: #fff;
-  padding: 8px 12px;
-  border-radius: 6px;
-  min-width: 140px;
-  pointer-events: auto;
-}
-
-.panel ul {
+.modal-content ul {
   margin: 4px 0 0;
   padding-left: 18px;
 }
@@ -89,4 +77,52 @@ body {
   font-size: 10px;
   padding: 0;
   overflow: hidden;
+}
+
+.craft-layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  margin: 10px 0;
+}
+
+.craft-source {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 90px;
+}
+
+.craft-chip {
+  border: 1px solid #999;
+  background: #eef7ee;
+  padding: 4px 8px;
+  cursor: grab;
+  font-size: 13px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.craft-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 48px);
+  grid-auto-rows: 48px;
+  gap: 4px;
+}
+
+.craft-slot {
+  border: 1px solid #999;
+  background: #f4f4f4;
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.craft-slot.filled {
+  background: #dff0d8;
+  cursor: pointer;
 }

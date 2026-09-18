@@ -23,5 +23,8 @@ export function initInventory() {
   window.addEventListener("toggle-inventory", () => {
     panel.classList.toggle("hidden");
   });
+  document.getElementById("close-inventory").addEventListener("click", () => {
+    panel.classList.add("hidden");
+  });
   render();
 }
