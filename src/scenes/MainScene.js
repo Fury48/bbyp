@@ -147,6 +147,13 @@ export default class MainScene extends Phaser.Scene {
 
   update() {
     const body = this.player.body;
+
+    if (document.querySelector("#ui-root .modal:not(.hidden)")) {
+      body.setVelocity(0, 0);
+      this.playerShadow.setPosition(this.player.x, this.player.y + 16);
+      return;
+    }
+
     let vx = 0;
     let vy = 0;
     if (this.keys.A.isDown) vx -= SPEED;

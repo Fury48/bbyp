@@ -61,25 +61,34 @@
       </div>
 
       <div id="thought-book" class="modal hidden">
-        <div class="modal-content">
-          <h2>생각의 책</h2>
-          <div id="question-list"></div>
-          <button id="close-book">닫기</button>
+        <div class="book-wrap">
+          <h2 class="book-title">생각의 책</h2>
+          <div class="book-spread">
+            <div class="book-page">
+              <div id="question-list-left" class="question-list"></div>
+            </div>
+            <div class="book-spine"></div>
+            <div class="book-page">
+              <div id="question-list-right" class="question-list"></div>
+            </div>
+          </div>
+          <button id="close-book">닫기 (ESC)</button>
         </div>
       </div>
 
       <div id="combination-table" class="modal hidden">
-        <div class="modal-content">
-          <h2>조합대</h2>
-          <div class="craft-layout">
+        <div class="craft-session">
+          <div class="modal-content craft-inventory-content">
+            <h2>내 강점</h2>
             <div id="craft-source" class="craft-source"></div>
-            <div class="craft-grid-wrap">
-              <div id="craft-grid" class="craft-grid"></div>
-              <button id="combine-btn">조합하기</button>
-            </div>
           </div>
-          <p id="combine-result"></p>
-          <button id="close-table">닫기</button>
+          <div class="modal-content">
+            <h2>조합대</h2>
+            <div id="craft-grid" class="craft-grid"></div>
+            <button id="combine-btn">조합하기</button>
+            <p id="combine-result"></p>
+            <button id="close-table">닫기 (ESC)</button>
+          </div>
         </div>
       </div>
 

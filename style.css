@@ -159,18 +159,20 @@ button:disabled {
 }
 
 /* 조합대 (드래그 앤 드롭) */
-.craft-layout {
+.craft-session {
   display: flex;
-  gap: 16px;
+  gap: 20px;
   align-items: flex-start;
-  margin: 10px 0;
+}
+
+.craft-inventory-content {
+  min-width: 140px;
 }
 
 .craft-source {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  min-width: 90px;
 }
 
 .craft-chip {
@@ -259,6 +261,62 @@ button:disabled {
 .question-done {
   color: var(--accent-green-dark);
   font-weight: bold;
+}
+
+/* 생각의 책: 양쪽으로 펼쳐진 책 */
+.book-wrap {
+  background: var(--wood);
+  border: 6px solid var(--wood-dark);
+  border-radius: 12px;
+  box-shadow:
+    0 8px 0 var(--wood-dark),
+    0 14px 28px rgba(0, 0, 0, 0.4);
+  padding: 18px;
+  text-align: center;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.book-title {
+  margin: 0 0 12px;
+  color: var(--parchment);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
+}
+
+.book-spread {
+  display: flex;
+  background: var(--parchment);
+  border-radius: 6px;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  min-height: 0;
+}
+
+.book-page {
+  width: 320px;
+  max-height: 60vh;
+  overflow-y: auto;
+  padding: 16px;
+  text-align: left;
+  color: var(--ink);
+}
+
+.book-spine {
+  width: 6px;
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.05) 40%,
+    rgba(0, 0, 0, 0.05) 60%,
+    rgba(0, 0, 0, 0.25)
+  );
+  flex-shrink: 0;
+}
+
+.book-wrap button {
+  margin-top: 14px;
+  align-self: center;
 }
 
 /* 타이틀 화면 */

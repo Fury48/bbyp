@@ -18,6 +18,13 @@ function startGame(username) {
   initInventory();
   initGarden();
 
+  window.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") return;
+    document
+      .querySelectorAll("#ui-root .modal:not(.hidden)")
+      .forEach((modal) => modal.classList.add("hidden"));
+  });
+
   new Phaser.Game({
     type: Phaser.AUTO,
     parent: "game-container",
